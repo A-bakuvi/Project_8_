@@ -53,7 +53,7 @@ public class SuperPowerSpawnPoints : MonoBehaviour
                 remainedPositions.Add(_pos);
             }
 
-            if (pc1.number < 5 || pc2.number1 < 5)
+            if (pc1.number < 21 || pc2.number1 < 5)
             {
                 if (pc1.number < 5 && pc2.number1 < 5)
                 {
