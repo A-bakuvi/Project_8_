@@ -165,10 +165,10 @@ public class Player2Controller : MonoBehaviour
         _screenY = Random.Range(-17, 17);
         _pos = new Vector2(_screenX, _screenY);
 
-        if (collision.gameObject.tag == "Wall")
+        /*if (collision.gameObject.tag == "Wall")
         {
             StartCoroutine(DontRotate());
-        }
+        }*/
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -228,12 +228,12 @@ public class Player2Controller : MonoBehaviour
         }
     }
 
-    IEnumerator DontRotate()
+    /*IEnumerator DontRotate()
     {
         _rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         yield return new WaitForSeconds(0.5f);
         _rb.constraints &= ~RigidbodyConstraints2D.FreezeRotation;
-    }
+    }*/
 
 
     IEnumerator Fire()
