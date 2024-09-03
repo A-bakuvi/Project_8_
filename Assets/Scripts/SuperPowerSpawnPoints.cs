@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class SuperPowerSpawnPoints : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class SuperPowerSpawnPoints : MonoBehaviour
     [SerializeField] GameObject player1;
     [SerializeField] List<Vector2> _superPowerSpawnPositions;
     private List<Vector2> removedPositions;
+    private List<Vector2> remainedPositions;
 
     public Player1controller pc1;
     public Player2Controller pc2;
@@ -23,6 +25,7 @@ public class SuperPowerSpawnPoints : MonoBehaviour
     void Start()
     {
         removedPositions = new List<Vector2>();
+        remainedPositions = new List<Vector2>();
         StartCoroutine(SpawnSuperPowers());
         
     }
@@ -33,16 +36,22 @@ public class SuperPowerSpawnPoints : MonoBehaviour
     {
         if (player.gameObject.activeInHierarchy && player1.gameObject.activeInHierarchy)
         {
-            yield return new WaitForSeconds(10);
+            yield return new WaitForSeconds(1);
             if (_superPowerSpawnPositions.Count == 0)
             {
-                _superPowerSpawnPositions = new List<Vector2>(removedPositions);
+                _superPowerSpawnPositions = new List<Vector2>(removedPositions.Except(remainedPositions));
                 removedPositions.Clear();
+                remainedPositions.Clear();
             }
 
             _randomSuperPower = Random.Range(0, _superPowers.Length);
             _randomSpawnPosition = Random.Range(0, _superPowerSpawnPositions.Count);
             _pos = _superPowerSpawnPositions[_randomSpawnPosition];
+
+            if (_superPowerSpawnPositions.Count <= 5)
+            {
+                remainedPositions.Add(_pos);
+            }
 
             if (pc1.number < 5 || pc2.number1 < 5)
             {
