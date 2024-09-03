@@ -22,7 +22,10 @@ public class Bullet2 : MonoBehaviour
             collision.gameObject.GetComponent<EnemyHealth>().DamageEnemy(_damage);
             Destroy(gameObject);
         }
-
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Destroy(gameObject);
+        }
     }
 }
 

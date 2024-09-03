@@ -27,6 +27,6 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0; // Pause the game
 
         // Load the Game Over scene
-        //SceneManager.LoadScene("GameOverScene");
+        SceneManager.LoadScene("GameOverScene");
     }
 }
