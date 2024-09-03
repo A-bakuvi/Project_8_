@@ -82,7 +82,7 @@ public class Player2Controller : MonoBehaviour
 
         if (Input.GetKey(KeyCode.W))
         {
-            _rb.velocity = transform.up * _moveSpeed;
+            _rb.velocity = -transform.up * _moveSpeed;
         }
         if (Input.GetKeyDown(KeyCode.V))
         {
@@ -244,7 +244,7 @@ public class Player2Controller : MonoBehaviour
 
         GameObject bullet = Instantiate(_bullet, _bulletSpawner.transform.position, transform.rotation);
 
-        bullet.GetComponent<Rigidbody2D>().velocity = transform.up * _bulletSpeed; // so its gonna go forward at the speed of _bulletSpeed;
+        bullet.GetComponent<Rigidbody2D>().velocity = -transform.up * _bulletSpeed; // so its gonna go forward at the speed of _bulletSpeed;
 
         yield return new WaitForSeconds(3);
 
@@ -257,7 +257,7 @@ public class Player2Controller : MonoBehaviour
 
         GameObject bullet1 = Instantiate(_bullet1, _bulletSpawner.transform.position, transform.rotation);
 
-        bullet1.GetComponent<Rigidbody2D>().velocity = transform.up * _bulletSpeed1; // so its gonna go forward at the speed of _bulletSpeed;
+        bullet1.GetComponent<Rigidbody2D>().velocity = -transform.up * _bulletSpeed1; // so its gonna go forward at the speed of _bulletSpeed;
 
         yield return new WaitForSeconds(0.5f);
 
@@ -276,7 +276,7 @@ public class Player2Controller : MonoBehaviour
 
         GameObject bullet3 = Instantiate(_bullet3, _bulletSpawner.transform.position, transform.rotation);
 
-        bullet3.GetComponent<Rigidbody2D>().velocity = transform.up * _bulletSpeed; // so its gonna go forward at the speed of _bulletSpeed;
+        bullet3.GetComponent<Rigidbody2D>().velocity = -transform.up * _bulletSpeed; // so its gonna go forward at the speed of _bulletSpeed;
 
         yield return new WaitForSeconds(3);
 
