@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bullet3 : MonoBehaviour
 {
-    //int _damage = 20;
+    int _damage = 20;
 
     void Start()
     {
@@ -12,16 +12,16 @@ public class Bullet3 : MonoBehaviour
         StartCoroutine(Wait2());
     }
 
-    /*void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
 
-        if (collision.gameObject.tag == "Enemy1")
+        if (collision.gameObject.tag == "Enemy2")
         {
             collision.gameObject.GetComponent<EnemyHealth>().DamageEnemy(_damage);
             Destroy(gameObject);
         }
 
-    }*/
+    }
 
     IEnumerator Wait2()
     {

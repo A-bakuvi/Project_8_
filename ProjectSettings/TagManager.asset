@@ -15,6 +15,7 @@ TagManager:
   - Bullet2
   - Bullet1
   - Bullet3
+  - Enemy2
   layers:
   - Default
   - TransparentFX

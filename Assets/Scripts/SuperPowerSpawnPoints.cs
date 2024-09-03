@@ -5,6 +5,8 @@ using UnityEngine;
 public class SuperPowerSpawnPoints : MonoBehaviour
 {
     [SerializeField] GameObject[] _superPowers;
+    [SerializeField] GameObject player;
+    [SerializeField] GameObject player1;
     [SerializeField] List<Vector2> _superPowerSpawnPositions;
     private List<Vector2> removedPositions;
 
@@ -29,35 +31,48 @@ public class SuperPowerSpawnPoints : MonoBehaviour
 
     IEnumerator SpawnSuperPowers()
     {
-        if (_superPowerSpawnPositions.Count == 0)
+        if (player.gameObject.activeInHierarchy && player1.gameObject.activeInHierarchy)
         {
-            _superPowerSpawnPositions = removedPositions;
-            removedPositions.Clear();
+            yield return new WaitForSeconds(1);
+            if (_superPowerSpawnPositions.Count == 0)
+            {
+                _superPowerSpawnPositions = new List<Vector2>(removedPositions);
+                removedPositions.Clear();
+            }
+
+            _randomSuperPower = Random.Range(0, _superPowers.Length);
+            _randomSpawnPosition = Random.Range(0, _superPowerSpawnPositions.Count);
+            _pos = _superPowerSpawnPositions[_randomSpawnPosition];
+
+            if (pc1.number < 5 || pc2.number1 < 5)
+            {
+                if (pc1.number < 5 && pc2.number1 < 5)
+                {
+                    pc1.number += 1;
+                    pc2.number1 += 1;
+                }
+                else if (pc1.number < 5)
+                {
+                    pc1.number += 1;
+                }
+                else if (pc2.number1 < 5)
+                {
+                    pc2.number1 += 1;
+                }
+
+                Instantiate(_superPowers[_randomSuperPower], _pos, Quaternion.identity);
+                //List<Vector2> list = new List<Vector2>(_superPowerSpawnPositions);
+
+                // Remove the specific item
+                _superPowerSpawnPositions.Remove(_pos);  // Removes the first occurrence of 3
+                removedPositions.Add(_pos);
+
+                // Convert back to an array if needed
+                //_superPowerSpawnPositions = list.ToArray();
+
+            }
+            StartCoroutine(SpawnSuperPowers());
         }
 
-        _randomSuperPower = Random.Range(0, _superPowers.Length);
-        _randomSpawnPosition = Random.Range(0, _superPowerSpawnPositions.Count);
-        _pos = _superPowerSpawnPositions[_randomSpawnPosition];
-
-        if (pc1.number < 5 || pc2.number1 < 5)
-        {
-            Instantiate(_superPowers[_randomSuperPower],_pos, Quaternion.identity);
-            //List<Vector2> list = new List<Vector2>(_superPowerSpawnPositions);
-
-            // Remove the specific item
-            _superPowerSpawnPositions.Remove(_pos);  // Removes the first occurrence of 3
-            removedPositions.Add(_pos);
-
-            // Convert back to an array if needed
-            //_superPowerSpawnPositions = list.ToArray();
-
-            pc1.number += 1;
-            pc2.number1 += 1;
-
-        }
-
-        yield return new WaitForSeconds(3);
-        StartCoroutine(SpawnSuperPowers());
     }
-
 }

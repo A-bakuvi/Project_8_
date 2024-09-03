@@ -15,7 +15,7 @@ public class Shield2 : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.tag == "Bullet1")
+        if (collider.gameObject.tag == "Enemy2")
         {
             Destroy(collider.gameObject);
         }

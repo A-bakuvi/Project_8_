@@ -68,7 +68,7 @@ public class Player2Controller : MonoBehaviour
         _shield.SetActive(false);
         _isShield = false;
         _rb = GetComponent<Rigidbody2D>();
-        _rb.rotation = 450f;
+        _rb.rotation = 90f;
     }
 
     void Update()
