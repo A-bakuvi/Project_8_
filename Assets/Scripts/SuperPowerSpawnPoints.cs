@@ -36,7 +36,7 @@ public class SuperPowerSpawnPoints : MonoBehaviour
     {
         if (player.gameObject.activeInHierarchy && player1.gameObject.activeInHierarchy)
         {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(10);
             if (_superPowerSpawnPositions.Count == 0)
             {
                 _superPowerSpawnPositions = new List<Vector2>(removedPositions.Except(remainedPositions));
@@ -53,7 +53,7 @@ public class SuperPowerSpawnPoints : MonoBehaviour
                 remainedPositions.Add(_pos);
             }
 
-            if (pc1.number < 21 || pc2.number1 < 5)
+            if (pc1.number < 5 || pc2.number1 < 5)
             {
                 if (pc1.number < 5 && pc2.number1 < 5)
                 {
